@@ -534,7 +534,7 @@ export default function App() {
             transition={{ duration: 0.3 }}
             className="w-full h-full"
           >
-            <StartScreen onStart={startGame} />
+            <StartScreen onStart={startGame} frameWidth={frameWidth} />
           </motion.div>
         )}
 
