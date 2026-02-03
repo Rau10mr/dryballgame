@@ -4,10 +4,16 @@ import { useState } from 'react';
 
 interface StartScreenProps {
   onStart: () => void;
+  frameWidth: number;
 }
 
-export function StartScreen({ onStart }: StartScreenProps) {
+export function StartScreen({ onStart, frameWidth }: StartScreenProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Calcular dimensiones del logo basándose en frameWidth
+  // Logo escalado proporcionalmente al marco decorativo (frameWidth base: 112px)
+  // Logo con ancho de aproximadamente 90% del frameWidth para dejarlo centrado con margen
+  const logoWidth = frameWidth;
 
   return (
     <div className="flex flex-col items-center justify-center gap-12 p-8 text-center h-full">
@@ -19,14 +25,15 @@ export function StartScreen({ onStart }: StartScreenProps) {
           2. Tamaño recomendado: 800x200px (horizontal)
           3. Estilo: Logo "DRYB4LL" en pixel art
           ═══════════════════════════════════════════════════════════ */}
-      <div className="animate-pulse w-[90%]">
+      <div className="animate-pulse">
         <ImageWithFallback 
           src={UI_SPRITES.titleLogo}
           alt="DRYB4LL"
-          className="w-full h-auto object-contain"
+          className="object-contain"
           style={{ 
             imageRendering: 'pixelated',
-            transform: 'scale(1.25)'
+            width: `${logoWidth}px`,
+            height: 'auto',
           }}
         />
       </div>
